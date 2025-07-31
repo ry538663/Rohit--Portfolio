@@ -1,18 +1,24 @@
 // filepath: client/vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
     react(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'public/_redirects',
-          dest: '.'
-        }
-      ]
-    })
-  ]
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "Src"),
+      "@shared": path.resolve(__dirname, "..", "shared"),
+      "@assets": path.resolve(__dirname, "..", "attached_assets"),
+    },
+  },
+  build: {
+    outDir: path.resolve(__dirname, "..", "dist/public"),
+    emptyOutDir: true,
+  },
 });
