@@ -4,7 +4,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development tsx server/index.ts"
+    "dev": "cross-env NODE_ENV=development tsx server/index.ts",
+    "build": "vite build --config vite.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
